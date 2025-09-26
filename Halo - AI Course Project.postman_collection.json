@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "ac6db7a0-8ec8-4ee4-944b-eb8cb84ac16d",
+		"name": "Halo - AI Course Project",
+		"description": "# Usage\n\nSubmit Survey:  \n\\- Based on payload, the survey service stores the user answers and embed the needed information for RAG process.\n\nChatbot Message (Based on previous conversation)\n\n- It send a new message based on previous conversation, the history is taken from mongo database based on conversation id from request body.\n    \n\nChatbot Message (New conversation)\n\n- It creates a new entry on conversation database and sends the first message, take in consideration retrieved id to continue the conversation with request from above.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32009789"
+	},
+	"item": [
+		{
+			"name": "Submit Survey",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userName\": \"Giuliano Carabajal\",\r\n    \"answers\": [\r\n  {\r\n    \"key\": \"WORK_ENVIRONMENT\",\r\n    \"value\": \"I am satisfied with my work environment.\"\r\n  },\r\n  {\r\n    \"key\": \"TEAMWORK\",\r\n    \"value\": \"Our team collaborates very effectively.\"\r\n  },\r\n  {\r\n    \"key\": \"COMMUNICATION\",\r\n    \"value\": \"Communication is clear most of the time.\"\r\n  },\r\n  {\r\n    \"key\": \"LEADERSHIP\",\r\n    \"value\": \"Leadership is supportive and approachable.\"\r\n  },\r\n  {\r\n    \"key\": \"WORKLOAD\",\r\n    \"value\": \"My workload is manageable.\"\r\n  },\r\n  {\r\n    \"key\": \"RECOGNITION\",\r\n    \"value\": \"I feel recognized for my contributions.\"\r\n  },\r\n  {\r\n    \"key\": \"VALUES_ALIGNMENT\",\r\n    \"value\": \"My values align well with the company's values.\"\r\n  },\r\n  {\r\n    \"key\": \"PROFESSIONAL_GROWTH\",\r\n    \"value\": \"I have sufficient opportunities for professional growth.\"\r\n  },\r\n  {\r\n    \"key\": \"WORK_LIFE_BALANCE\",\r\n    \"value\": \"The company supports work-life balance effectively.\"\r\n  },\r\n  {\r\n    \"key\": \"JOB_SATISFACTION\",\r\n    \"value\": \"Overall, I am satisfied with my job.\"\r\n  }\r\n]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/survey/submit",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"survey",
+						"submit"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Chatbot Message",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"conversationId\": \"68d687b974bd3e9d5fdc7785\",\r\n    \"message\": \"So, the company have good results?\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/chatbot/message",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"chatbot",
+						"message"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
